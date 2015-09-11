@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AnyShareOfAndroid.iml" filepath="$PROJECT_DIR$/AnyShareOfAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RadarScanView/RadarScanView.iml" filepath="$PROJECT_DIR$/RadarScanView/RadarScanView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

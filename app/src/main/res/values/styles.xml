@@ -7,11 +7,31 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="btn_red_style">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:background">@drawable/btn_red_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:height">45dp</item>
+    </style>
+
+    <style name="btn_green_style">
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:background">@drawable/btn_green_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:height">45dp</item>
+    </style>
 
 </resources>
