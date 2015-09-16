@@ -21,5 +21,4 @@
     <string name="app">应用</string>
 
     <string name="send_connect_to">发送端链接到： %s </string>
-    <string name="title_activity_receive">ReceiveActivity</string>
 </resources>

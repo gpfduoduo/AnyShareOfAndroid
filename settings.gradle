@@ -1,1 +1,1 @@
-include ':app', ':RadarScanView'
+include ':app', ':RadarScanView', ':togicloadingview'

@@ -22,7 +22,27 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_receive" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        tools:showIn="@layout/activity_receive">
+
+        <TextView
+            android:id="@+id/activity_receive_radar_wifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal" />
+
+        <com.guo.duoduo.togicloadingview.TogicLoadingView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_receive_radar_wifi"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
