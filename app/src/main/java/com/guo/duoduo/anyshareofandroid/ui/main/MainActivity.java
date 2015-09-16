@@ -13,7 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.guo.duoduo.anyshareofandroid.R;
-import com.guo.duoduo.anyshareofandroid.ui.receive.RadarScanActivity;
+import com.guo.duoduo.anyshareofandroid.ui.receive.ReceiveActivity;
+import com.guo.duoduo.anyshareofandroid.ui.send.FileActivity;
 import com.guo.duoduo.anyshareofandroid.ui.setting.SettingActivity;
 
 
@@ -27,10 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.activity_main_fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -52,12 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        Button send = (Button) findViewById(R.id.main_i_send);
+        Button send = (Button) findViewById(R.id.activity_main_i_send);
         send.setOnClickListener(this);
-        Button receive = (Button) findViewById(R.id.main_i_receive);
+        Button receive = (Button) findViewById(R.id.activity_main_i_receive);
         receive.setOnClickListener(this);
 
-        nameEdit = (EditText) findViewById(R.id.main_name_edit);
+        nameEdit = (EditText) findViewById(R.id.activity_main_name_edit);
         nameEdit.setText(Build.DEVICE);
     }
 
@@ -66,11 +67,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         switch (view.getId())
         {
-            case R.id.main_i_receive :
-                startActivity(new Intent(MainActivity.this, RadarScanActivity.class)
-                        .putExtra("name", nameEdit.getText().toString()));
+            case R.id.activity_main_i_receive :
+                startActivity(new Intent(MainActivity.this, ReceiveActivity.class));
                 break;
-            case R.id.main_i_send :
+            case R.id.activity_main_i_send :
+                startActivity(new Intent(MainActivity.this, FileActivity.class).putExtra(
+                    "name", nameEdit.getText().toString()));
                 break;
         }
     }

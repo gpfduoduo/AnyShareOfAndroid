@@ -5,6 +5,11 @@
     <color name="colorAccent">#FF4081</color>
 
 
+    <color name="text_primary">#333333</color>
+    <color name="text_secondary">#999999</color>
+    <color name="text_dialog">#666666</color>
+    <color name="edittext_hint">#cccccc</color>
+
     <!-- default colors -->
     <color name="transparent">#00000000</color>
     <color name="white">#ffffffff</color>

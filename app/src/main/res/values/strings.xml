@@ -12,4 +12,14 @@
     <string name="main_name_hint">输入昵称</string>
 
     <string name="title_radar_scan">扫描好友</string>
+
+    <string name="wifi_hotspot_fail">创建WiFi热点失败</string>
+    <string name="wifi_hotspot_creating">正在创建WiFi热点</string>
+
+    <string name="file_select">选择文件</string>
+    <string name="picture">图片</string>
+    <string name="app">应用</string>
+
+    <string name="send_connect_to">发送端链接到： %s </string>
+    <string name="title_activity_receive">ReceiveActivity</string>
 </resources>
