@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.guo.duoduo.anyshareofandroid.R;
-import com.guo.duoduo.anyshareofandroid.entity.IInfo;
+import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 
 

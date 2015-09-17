@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guo.duoduo.anyshareofandroid.R;
-import com.guo.duoduo.anyshareofandroid.entity.IInfo;
+import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 
 

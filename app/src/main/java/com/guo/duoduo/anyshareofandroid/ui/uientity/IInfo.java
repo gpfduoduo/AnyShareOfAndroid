@@ -1,4 +1,4 @@
-package com.guo.duoduo.anyshareofandroid.entity;
+package com.guo.duoduo.anyshareofandroid.ui.uientity;
 
 
 import android.graphics.drawable.Drawable;

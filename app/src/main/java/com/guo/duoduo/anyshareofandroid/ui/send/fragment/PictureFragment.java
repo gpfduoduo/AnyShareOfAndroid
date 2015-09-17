@@ -26,8 +26,8 @@ import android.widget.ProgressBar;
 
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.constant.Constant;
-import com.guo.duoduo.anyshareofandroid.entity.IInfo;
-import com.guo.duoduo.anyshareofandroid.entity.PictureInfo;
+import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
+import com.guo.duoduo.anyshareofandroid.ui.uientity.PictureInfo;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.send.view.ImageSelectAdapter;
 import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;

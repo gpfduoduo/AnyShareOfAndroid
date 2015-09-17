@@ -16,7 +16,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.guo.duoduo.anyshareofandroid.R;
-import com.guo.duoduo.anyshareofandroid.entity.IInfo;
+import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.send.fragment.AppFragment;
 import com.guo.duoduo.anyshareofandroid.ui.send.fragment.FragmentAdapter;
