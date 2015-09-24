@@ -1,6 +1,7 @@
 package com.guo.duoduo.anyshareofandroid.utils;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -40,6 +41,11 @@ public class DeviceUtils
             f = (float) ((float) size / (float) (1024 * 1024));
             return (df.format(new Float(f).doubleValue()) + "MB");
         }
+    }
+
+    public static String getFileName(String path)
+    {
+        return new File(path).getName();
     }
 
     /** get file size M K B G etc... */

@@ -4,6 +4,7 @@ package com.guo.duoduo.anyshareofandroid.ui.uientity;
 import android.graphics.drawable.Drawable;
 
 import com.guo.duoduo.anyshareofandroid.constant.Constant;
+import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pconstant.P2PConstant;
 
 
 /**
@@ -11,7 +12,7 @@ import com.guo.duoduo.anyshareofandroid.constant.Constant;
  */
 public class AppInfo implements IInfo
 {
-    public int type = Constant.MediaType.APP;
+    public int type = P2PConstant.TYPE.APP;
     public Drawable appIcon;
     public String appLabel;
     public String pkgName;

@@ -26,23 +26,44 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
-        <com.guo.duoduo.library.RadarScanView
+        <RelativeLayout
+            android:id="@+id/activity_radar_scan_relative"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.guo.duoduo.library.RadarScanView>
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/activity_radar_scan_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/green" />
+            <com.guo.duoduo.library.RadarScanView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.guo.duoduo.library.RadarScanView>
 
-        <com.guo.duoduo.randomtextview.RandomTextView
-            android:id="@+id/activity_radar_rand_textview"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true"
-            android:background="@color/transparent"></com.guo.duoduo.randomtextview.RandomTextView>
+            <TextView
+                android:id="@+id/activity_radar_scan_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/green" />
 
+            <com.guo.duoduo.randomtextview.RandomTextView
+                android:id="@+id/activity_radar_rand_textview"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                android:background="@color/transparent"></com.guo.duoduo.randomtextview.RandomTextView>
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/activity_radar_scan_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"></ListView>
     </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/activity_radar_scan_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_input_delete" />
+
 </android.support.design.widget.CoordinatorLayout>

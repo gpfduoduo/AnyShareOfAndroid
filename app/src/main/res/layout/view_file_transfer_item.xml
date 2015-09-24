@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="60dip"
+    android:background="@drawable/list_bg_selector"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dip"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="55dip"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/file_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="2dip"
+                android:contentDescription="@string/app_name"
+                android:focusable="false" />
+
+            <TextView
+                android:id="@+id/file_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dip"
+                android:layout_toRightOf="@id/file_image"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:textColor="#666666"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/file_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/file_image"
+                android:paddingBottom="10dip"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/file_trans_relative"
+            android:layout_width="45dip"
+            android:layout_height="55dip"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/file_trans_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:focusable="false"
+                android:maxLines="1"
+                android:textColor="#666666"
+                android:textSize="12sp"></TextView>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/trans_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:max="100"
+        android:progressDrawable="@drawable/progressbg" />
+
+
+</LinearLayout>

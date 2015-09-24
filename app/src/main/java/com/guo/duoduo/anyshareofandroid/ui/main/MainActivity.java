@@ -13,9 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.guo.duoduo.anyshareofandroid.R;
-import com.guo.duoduo.anyshareofandroid.ui.receive.ReceiveActivity;
-import com.guo.duoduo.anyshareofandroid.ui.send.FileActivity;
+import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.setting.SettingActivity;
+import com.guo.duoduo.anyshareofandroid.ui.transfer.FileSelectActivity;
+import com.guo.duoduo.anyshareofandroid.ui.transfer.ReceiveActivity;
+import com.guo.duoduo.anyshareofandroid.utils.PreferenceUtils;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
@@ -59,7 +61,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         receive.setOnClickListener(this);
 
         nameEdit = (EditText) findViewById(R.id.activity_main_name_edit);
-        nameEdit.setText(Build.DEVICE);
+        nameEdit.setText((String) PreferenceUtils.getParam(MainActivity.this, "String",
+            Build.DEVICE));
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        //记住用户修改的名字
+        PreferenceUtils.setParam(MainActivity.this, "String", nameEdit.getText()
+                .toString());
     }
 
     @Override
@@ -68,11 +80,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId())
         {
             case R.id.activity_main_i_receive :
-                startActivity(new Intent(MainActivity.this, ReceiveActivity.class));
+                Cache.selectedList.clear();
+                startActivity(new Intent(MainActivity.this, ReceiveActivity.class)
+                        .putExtra("name", nameEdit.getText().toString()));
                 break;
             case R.id.activity_main_i_send :
-                startActivity(new Intent(MainActivity.this, FileActivity.class).putExtra(
-                    "name", nameEdit.getText().toString()));
+                Cache.selectedList.clear();
+                startActivity(new Intent(MainActivity.this, FileSelectActivity.class)
+                        .putExtra("name", nameEdit.getText().toString()));
                 break;
         }
     }

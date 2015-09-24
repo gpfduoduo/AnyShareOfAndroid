@@ -111,7 +111,7 @@ public class WifiConnectManager extends WifiManagerWrap
         }
     }
 
-    /** interface of BroadcastReceiver */
+    /** p2pinterface of BroadcastReceiver */
     private BroadcastReceiver mWifiReceiver = new BroadcastReceiver()
     {
         @Override

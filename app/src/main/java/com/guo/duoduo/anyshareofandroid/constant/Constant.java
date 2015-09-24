@@ -20,9 +20,4 @@ public class Constant
         public static final int APP_OK = 1;
     }
 
-    public interface MediaType
-    {
-        public static final int APP = 0;
-        public static final int PICTURE = 2;
-    }
 }

@@ -2,13 +2,11 @@
     <string name="app_name">西瓜快传</string>
     <string name="action_settings">Settings</string>
 
-
-
     <string name="setting_illustrate">点解设置查看具体使用说明</string>
     <string name="setting_action">设置</string>
 
     <string name="main_i_want_send">我要发送</string>
-    <string name="main_i_want_receive">我要接受</string>
+    <string name="main_i_want_receive">我要接收</string>
     <string name="main_name_hint">输入昵称</string>
 
     <string name="title_radar_scan">扫描好友</string>
@@ -20,5 +18,18 @@
     <string name="picture">图片</string>
     <string name="app">应用</string>
 
-    <string name="send_connect_to">发送端链接到： %s </string>
+    <string name="send_connect_to">发送端连接到： %s </string>
+
+    <string name="please_select_file">请选择文件</string>
+    <string name="title_activity_file_transfering">正在传输</string>
+    <string name="file_transfering_exit">你确定要退出吗？</string>
+    <string name="ok">确定</string>
+
+    <string name="send_abort_self">对端 %s 退出</string>
+    <string name="file_send_complete">发送完成</string>
+    <string name="file_has_completed">已完成</string>
+    <string name="file_wait">等待</string>
+    <string name="file_sending">正在发送</string>
+    <string name="file_receiving">正在接收</string>
+    <string name="file_receive_completed">接收完成</string>
 </resources>

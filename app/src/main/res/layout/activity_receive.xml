@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.guo.duoduo.anyshareofandroid.ui.receive.ReceiveActivity">
+    tools:context="com.guo.duoduo.anyshareofandroid.ui.transfer.ReceiveActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,26 +23,56 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
+        android:id="@+id/activity_receive_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         tools:showIn="@layout/activity_receive">
 
-        <TextView
-            android:id="@+id/activity_receive_radar_wifi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal" />
 
-        <com.guo.duoduo.togicloadingview.TogicLoadingView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/activity_receive_radar_wifi"
+        <com.guo.duoduo.rippleoutlayout.RippleOutLayout
+            android:id="@+id/activity_receive_ripple_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp" />
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/activity_receive_scan_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/green" />
+        </com.guo.duoduo.rippleoutlayout.RippleOutLayout>
+
+        <com.guo.duoduo.randomtextview.RandomTextView
+            android:id="@+id/activity_receive_rand_textview"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            android:background="@color/transparent"></com.guo.duoduo.randomtextview.RandomTextView>
+
     </RelativeLayout>
 
+    <ListView
+        android:id="@+id/activity_receive_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"></ListView>
 
+    <TextView
+        android:id="@+id/activity_receive_radar_wifi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:gravity="center_horizontal" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/activity_receive_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_input_delete" />
 </android.support.design.widget.CoordinatorLayout>
