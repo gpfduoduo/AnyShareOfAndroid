@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -23,15 +24,16 @@ import android.widget.TextView;
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.accesspoint.AccessPointManager;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pconstant.P2PConstant;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pcore.P2PManager;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PFileInfo;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PNeighbor;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pinterface.Melon_Callback;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pinterface.SendFile_Callback;
+import com.guo.duoduo.anyshareofandroid.ui.common.BaseActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.view.FileTransferAdapter;
 import com.guo.duoduo.anyshareofandroid.utils.NetworkUtils;
 import com.guo.duoduo.anyshareofandroid.utils.ToastUtils;
+import com.guo.duoduo.p2pmanager.p2pconstant.P2PConstant;
+import com.guo.duoduo.p2pmanager.p2pcore.P2PManager;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PNeighbor;
+import com.guo.duoduo.p2pmanager.p2pinterface.Melon_Callback;
+import com.guo.duoduo.p2pmanager.p2pinterface.SendFile_Callback;
 import com.guo.duoduo.randomtextview.RandomTextView;
 import com.guo.duoduo.rippleoutview.RippleView;
 
@@ -39,7 +41,7 @@ import com.guo.duoduo.rippleoutview.RippleView;
 /**
  * Created by 郭攀峰 on 2015/9/12.
  */
-public class RadarScanActivity extends AppCompatActivity
+public class RadarScanActivity extends BaseActivity
 {
     private static final String tag = RadarScanActivity.class.getSimpleName();
 
@@ -60,6 +62,9 @@ public class RadarScanActivity extends AppCompatActivity
         setContentView(R.layout.activity_radarscan);
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_radar_toolbar);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         if (intent != null)
@@ -263,4 +268,5 @@ public class RadarScanActivity extends AppCompatActivity
             Cache.selectedList.get(i).percent = 0;
         }
     }
+
 }

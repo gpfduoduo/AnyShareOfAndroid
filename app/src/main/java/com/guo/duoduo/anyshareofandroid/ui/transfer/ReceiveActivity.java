@@ -9,7 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,22 +23,23 @@ import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.constant.Constant;
 import com.guo.duoduo.anyshareofandroid.sdk.accesspoint.AccessPointManager;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pconstant.P2PConstant;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pcore.P2PManager;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PFileInfo;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PNeighbor;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pinterface.Melon_Callback;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pinterface.ReceiveFile_Callback;
+import com.guo.duoduo.anyshareofandroid.ui.common.BaseActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.view.FileTransferAdapter;
 import com.guo.duoduo.anyshareofandroid.ui.view.CommonProgressDialog;
 import com.guo.duoduo.anyshareofandroid.utils.NetworkUtils;
 import com.guo.duoduo.anyshareofandroid.utils.ToastUtils;
+import com.guo.duoduo.p2pmanager.p2pconstant.P2PConstant;
+import com.guo.duoduo.p2pmanager.p2pcore.P2PManager;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PNeighbor;
+import com.guo.duoduo.p2pmanager.p2pinterface.Melon_Callback;
+import com.guo.duoduo.p2pmanager.p2pinterface.ReceiveFile_Callback;
 import com.guo.duoduo.randomtextview.RandomTextView;
 import com.guo.duoduo.rippleoutlayout.RippleOutLayout;
 import com.guo.duoduo.rippleoutview.RippleView;
 
 
-public class ReceiveActivity extends AppCompatActivity
+public class ReceiveActivity extends BaseActivity
     implements
         AccessPointManager.OnWifiApStateChangeListener
 {
@@ -67,6 +68,9 @@ public class ReceiveActivity extends AppCompatActivity
         setContentView(R.layout.activity_receive);
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_receive_toolbar);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.activity_receive_fab);
         fab.setOnClickListener(new View.OnClickListener()
@@ -203,7 +207,6 @@ public class ReceiveActivity extends AppCompatActivity
             @Override
             public void OnReceiving(P2PFileInfo file)
             {
-                Log.d(tag, "on receiving file " + file.path + "; " + file.percent);
                 int index = -1;
                 if (Cache.selectedList.contains(file))
                 {

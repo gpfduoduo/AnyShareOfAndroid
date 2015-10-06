@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/common_dlg_fullbtn_bg_click" android:state_focused="true"/>
-    <item android:drawable="@drawable/common_dlg_fullbtn_bg_click" android:state_selected="true"/>
-    <item android:drawable="@drawable/common_dlg_fullbtn_bg_click" android:state_pressed="true"/>
-    <item android:drawable="@drawable/common_dlg_fullbtn_bg"/>
+    <item android:drawable="@mipmap/common_dlg_fullbtn_bg_click" android:state_focused="true"/>
+    <item android:drawable="@mipmap/common_dlg_fullbtn_bg_click" android:state_selected="true"/>
+    <item android:drawable="@mipmap/common_dlg_fullbtn_bg_click" android:state_pressed="true"/>
+    <item android:drawable="@mipmap/common_dlg_fullbtn_bg"/>
 
 </selector>

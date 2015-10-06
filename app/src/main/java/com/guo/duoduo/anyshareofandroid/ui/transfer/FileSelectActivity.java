@@ -10,31 +10,28 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
+import com.guo.duoduo.anyshareofandroid.ui.common.BaseActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.AppFragment;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.FragmentAdapter;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.OnSelectItemClickListener;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.PictureFragment;
-import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 import com.guo.duoduo.anyshareofandroid.utils.ToastUtils;
 
 
 /**
  * Created by 郭攀峰 on 2015/9/15.
  */
-public class FileSelectActivity extends ActionBarActivity
-    implements
-        OnSelectItemClickListener
+public class FileSelectActivity extends BaseActivity implements OnSelectItemClickListener
 {
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private List<IInfo> selectedList = new ArrayList<>();
     private String userName = Build.DEVICE;
     private Toolbar toolbar;
     private String title;
@@ -47,6 +44,9 @@ public class FileSelectActivity extends ActionBarActivity
         setContentView(R.layout.activity_file);
         toolbar = (Toolbar) findViewById(R.id.activity_file_toolbar);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         title = toolbar.getTitle().toString();
         if (TextUtils.isEmpty(title))

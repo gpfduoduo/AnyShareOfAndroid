@@ -4,20 +4,22 @@ package com.guo.duoduo.anyshareofandroid.ui.main;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
-import com.guo.duoduo.anyshareofandroid.ui.setting.SettingActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.FileSelectActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.ReceiveActivity;
+import com.guo.duoduo.anyshareofandroid.ui.transfer.Send2PC;
 import com.guo.duoduo.anyshareofandroid.utils.PreferenceUtils;
+
+import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
@@ -33,32 +35,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.activity_main_fab);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Snackbar.make(view,
-                    getResources().getString(R.string.setting_illustrate),
-                    Snackbar.LENGTH_LONG)
-                        .setAction(getResources().getString(R.string.setting_action),
-                            new View.OnClickListener()
-                            {
-                                @Override
-                                public void onClick(View view)
-                                {
-                                    startActivity(new Intent(MainActivity.this,
-                                        SettingActivity.class));
-                                }
-                            }).show();
-            }
-        });
+        toolbar.setOnMenuItemClickListener(onMenuItemClick);
 
         Button send = (Button) findViewById(R.id.activity_main_i_send);
         send.setOnClickListener(this);
         Button receive = (Button) findViewById(R.id.activity_main_i_receive);
         receive.setOnClickListener(this);
+        Button send2PC = (Button) findViewById(R.id.main_i_send_2_pc);
+        send2PC.setOnClickListener(this);
 
         nameEdit = (EditText) findViewById(R.id.activity_main_name_edit);
         nameEdit.setText((String) PreferenceUtils.getParam(MainActivity.this, "String",
@@ -89,7 +73,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, FileSelectActivity.class)
                         .putExtra("name", nameEdit.getText().toString()));
                 break;
+            case R.id.main_i_send_2_pc :
+                startActivity(new Intent(MainActivity.this, Send2PC.class));
+                break;
         }
+    }
+
+    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener()
+    {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem)
+        {
+            switch (menuItem.getItemId())
+            {
+                case R.id.menu_item_receive_directory :
+
+                    break;
+            }
+            return true;
+        }
+    };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // 為了讓 Toolbar 的 Menu 有作用，這邊的程式不可以拿掉
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
 }

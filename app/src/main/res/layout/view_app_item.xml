@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_item_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
@@ -26,7 +27,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/editable_mode_checked_tag"></ImageView>
+            android:src="@mipmap/editable_mode_checked_tag"></ImageView>
     </RelativeLayout>
 
     <TextView

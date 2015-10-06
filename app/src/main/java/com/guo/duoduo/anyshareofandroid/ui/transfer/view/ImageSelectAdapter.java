@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.List;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,16 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PFileInfo;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 
 /**
  * Created by 郭攀峰 on 2015/9/16.
  */
-public class ImageSelectAdapter extends FileSelectAdapter
+public class ImageSelectAdapter
+    extends
+        RecyclerView.Adapter<ImageSelectAdapter.MyViewHolder>
 {
 
     private static final String tag = ImageSelectAdapter.class.getSimpleName();
@@ -34,44 +37,32 @@ public class ImageSelectAdapter extends FileSelectAdapter
         this.context = context;
     }
 
-    @Override
-    public int getCount()
+    public interface OnItemClickListener
     {
-        return list.size();
+        void onItemClick(View view, int position);
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener)
+    {
+        onItemClickListener = listener;
     }
 
     @Override
-    public Object getItem(int i)
+    public ImageSelectAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+            int viewType)
     {
-        return list.get(i);
+        MyViewHolder holder = new MyViewHolder(LayoutInflater.from(context).inflate(
+            R.layout.view_pic_item, null));
+        return holder;
     }
 
     @Override
-    public long getItemId(int i)
+    public void onBindViewHolder(final ImageSelectAdapter.MyViewHolder holder,
+            int position)
     {
-        return i;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup)
-    {
-        View view = convertView;
-        GetView getView;
-        if (view == null)
-        {
-            view = LayoutInflater.from(context).inflate(R.layout.view_pic_item, null);
-            getView = new GetView();
-            getView.imageView = (ImageView) view.findViewById(R.id.imageview);
-            getView.pic_choice = (ImageView) view.findViewById(R.id.pic_choice);
-            view.setTag(getView);
-        }
-        else
-        {
-            getView = (GetView) view.getTag();
-        }
-
-        Glide.with(context).load(list.get(position).getFilePath())
-                .into(getView.imageView);
+        Glide.with(context).load(list.get(position).getFilePath()).into(holder.imageView);
 
         IInfo info = list.get(position);
         P2PFileInfo fileInfo = new P2PFileInfo();
@@ -81,16 +72,47 @@ public class ImageSelectAdapter extends FileSelectAdapter
         fileInfo.path = info.getFilePath();
 
         if (Cache.selectedList.contains(fileInfo))
-            getView.pic_choice.setVisibility(View.VISIBLE);
+            holder.pic_choice.setVisibility(View.VISIBLE);
         else
-            getView.pic_choice.setVisibility(View.INVISIBLE);
+            holder.pic_choice.setVisibility(View.INVISIBLE);
 
-        return view;
+        holder.imageView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if (onItemClickListener != null)
+                {
+                    onItemClickListener.onItemClick(holder.imageView,
+                        holder.getLayoutPosition());
+                }
+            }
+        });
+
     }
 
-    private static class GetView
+    @Override
+    public int getItemCount()
+    {
+        return list.size();
+    }
+
+    public IInfo getItem(int position)
+    {
+        return list.get(position);
+    }
+
+    class MyViewHolder extends RecyclerView.ViewHolder
     {
         ImageView imageView;
         ImageView pic_choice;
+
+        public MyViewHolder(View view)
+        {
+            super(view);
+            imageView = (ImageView) view.findViewById(R.id.imageview);
+            pic_choice = (ImageView) view.findViewById(R.id.pic_choice);
+        }
     }
+
 }

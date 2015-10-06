@@ -15,24 +15,26 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import com.guo.duoduo.anyshareofandroid.MyApplication;
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.constant.Constant;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pconstant.P2PConstant;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PFileInfo;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.view.AppSelectAdapter;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.AppInfo;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
+import com.guo.duoduo.anyshareofandroid.ui.view.MyWindowManager;
 import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
+import com.guo.duoduo.anyshareofandroid.utils.ViewUtils;
+import com.guo.duoduo.p2pmanager.p2pconstant.P2PConstant;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 
 /**
@@ -40,19 +42,20 @@ import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
  */
 public class AppFragment extends Fragment
     implements
-        AdapterView.OnItemClickListener,
+        AppSelectAdapter.OnItemClickListener,
         OnSelectItemClickListener
 {
     private static final String tag = AppFragment.class.getSimpleName();
+
+    public static final int ANIMATION_DURATION = 800;
 
     private View view = null;
     private List<IInfo> appList = new ArrayList<>();
     private PackageManager pkManager;
     private AppFragmentHandler handler;
     private AppSelectAdapter adapter;
-    private GridView gridView;
+    private RecyclerView recyclerView;
     private ProgressBar progressBar;
-
     private OnSelectItemClickListener clickListener;
 
     @Nullable
@@ -67,10 +70,11 @@ public class AppFragment extends Fragment
             view = inflater.inflate(R.layout.view_select, container, false);
             handler = new AppFragmentHandler(AppFragment.this);
 
-            gridView = (GridView) view.findViewById(R.id.gridview);
-            gridView.setOnItemClickListener(this);
+            recyclerView = (RecyclerView) view.findViewById(R.id.recycleview);
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
             adapter = new AppSelectAdapter(getActivity(), appList);
-            gridView.setAdapter(adapter);
+            adapter.setOnItemClickListener(this);
+            recyclerView.setAdapter(adapter);
             progressBar = (ProgressBar) view.findViewById(R.id.loading);
 
             getAppInfo();
@@ -175,7 +179,7 @@ public class AppFragment extends Fragment
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    public void onItemClick(View view, int position)
     {
         AppInfo info = ((AppInfo) adapter.getItem(position));
         P2PFileInfo fileInfo = new P2PFileInfo();
@@ -191,6 +195,7 @@ public class AppFragment extends Fragment
         else
         {
             Cache.selectedList.add(fileInfo);
+            startFloating(view, position);
         }
         adapter.notifyDataSetChanged();
         clickListener.onItemClicked(P2PConstant.TYPE.APP);
@@ -200,6 +205,19 @@ public class AppFragment extends Fragment
     public void onItemClicked(int type)
     {
 
+    }
+
+    private void startFloating(View view, int position)
+    {
+        if (!MyWindowManager.isWindowShowing())
+        {
+            int[] location = ViewUtils.getViewItemLocation(view);
+            int viewX = location[0];
+            int viewY = location[1];
+
+            MyWindowManager.createSmallWindow(getActivity(), viewX, viewY, 0, 0, adapter
+                    .getItem(position).getFileIcon());
+        }
     }
 
     private static class AppFragmentHandler extends Handler
@@ -233,4 +251,5 @@ public class AppFragment extends Fragment
 
         }
     }
+
 }

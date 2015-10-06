@@ -1,7 +1,7 @@
 package com.guo.duoduo.anyshareofandroid.sdk.cache;
 
 
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PFileInfo;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,5 +12,4 @@ import java.util.List;
 public class Cache
 {
     public static List<P2PFileInfo> selectedList = new ArrayList<>();
-
 }

@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">西瓜快传</string>
-    <string name="action_settings">Settings</string>
+    <string name="menu_history">接收目录</string>
 
     <string name="setting_illustrate">点解设置查看具体使用说明</string>
     <string name="setting_action">设置</string>
 
     <string name="main_i_want_send">我要发送</string>
     <string name="main_i_want_receive">我要接收</string>
+    <string name="main_i_file_2_PC">传文件到电脑</string>
     <string name="main_name_hint">输入昵称</string>
 
     <string name="title_radar_scan">扫描好友</string>

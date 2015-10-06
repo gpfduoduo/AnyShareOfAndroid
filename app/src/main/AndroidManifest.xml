@@ -12,18 +12,19 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/watermelon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme.NoActionBar" >
+        android:theme="@style/AppTheme" >
         <activity
-            android:name=".ui.main.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:name=".ui.main.WelcomeActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +32,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.setting.SettingActivity"
-            android:label="@string/setting_action" />
+            android:name=".ui.main.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.transfer.RadarScanActivity"
             android:label="@string/title_radar_scan" />
@@ -43,6 +45,11 @@
             android:name=".ui.transfer.ReceiveActivity"
             android:label="@string/main_i_want_receive"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.transfer.Send2PC"
+            android:label="@string/main_i_file_2_PC"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

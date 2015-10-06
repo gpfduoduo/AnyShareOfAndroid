@@ -4,15 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <GridView
-        android:id="@+id/gridview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:horizontalSpacing="3dip"
-        android:numColumns="4"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="3dp"></GridView>
+        android:gravity="center"></android.support.v7.widget.RecyclerView>
 
     <ProgressBar
         android:id="@+id/loading"

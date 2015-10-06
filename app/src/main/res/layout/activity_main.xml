@@ -22,9 +22,9 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center">
 
         <LinearLayout
             android:id="@+id/main_name_layout"
@@ -65,17 +65,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/activity_main_i_send"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/main_i_want_receive" />
 
     </RelativeLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/activity_main_fab"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/main_i_send_2_pc"
+        style="@style/btn_green_style"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_info" />
+        android:text="@string/main_i_file_2_PC" />
 
 </android.support.design.widget.CoordinatorLayout>

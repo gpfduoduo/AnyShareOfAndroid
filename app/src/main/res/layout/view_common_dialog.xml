@@ -9,7 +9,7 @@
         android:id="@+id/comm_dialog_title_parent"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/common_dlg_headbg"
+        android:background="@mipmap/common_dlg_headbg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingLeft="15dp"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/common_dlg_conbg"
+        android:background="@mipmap/common_dlg_conbg"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="20dp"></LinearLayout>

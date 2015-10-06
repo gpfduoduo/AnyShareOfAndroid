@@ -16,23 +16,26 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.constant.Constant;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pconstant.P2PConstant;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PFileInfo;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.view.ImageSelectAdapter;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.PictureInfo;
+import com.guo.duoduo.anyshareofandroid.ui.view.MyWindowManager;
 import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
+import com.guo.duoduo.anyshareofandroid.utils.ViewUtils;
+import com.guo.duoduo.p2pmanager.p2pconstant.P2PConstant;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 
 /**
@@ -40,14 +43,14 @@ import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
  */
 public class PictureFragment extends Fragment
     implements
-        AdapterView.OnItemClickListener,
+        ImageSelectAdapter.OnItemClickListener,
         OnSelectItemClickListener
 {
 
     private static final String tag = PictureFragment.class.getSimpleName();
 
     private View view;
-    private GridView gridView;
+    private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private ImageSelectAdapter adapter;
 
@@ -67,11 +70,12 @@ public class PictureFragment extends Fragment
         {
             handler = new PictureHandler(this);
             view = inflater.inflate(R.layout.view_select, container, false);
-            gridView = (GridView) view.findViewById(R.id.gridview);
-            gridView.setOnItemClickListener(this);
+            recyclerView = (RecyclerView) view.findViewById(R.id.recycleview);
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
             progressBar = (ProgressBar) view.findViewById(R.id.loading);
             adapter = new ImageSelectAdapter(getActivity(), picList);
-            gridView.setAdapter(adapter);
+            adapter.setOnItemClickListener(this);
+            recyclerView.setAdapter(adapter);
 
             getPictures();
         }
@@ -111,7 +115,7 @@ public class PictureFragment extends Fragment
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    public void onItemClick(View view, int position)
     {
         PictureInfo info = ((PictureInfo) adapter.getItem(position));
 
@@ -128,6 +132,8 @@ public class PictureFragment extends Fragment
         else
         {
             Cache.selectedList.add(fileInfo);
+
+            startFloating(view, position);
         }
         adapter.notifyDataSetChanged();
         clickListener.onItemClicked(P2PConstant.TYPE.PIC);
@@ -137,6 +143,19 @@ public class PictureFragment extends Fragment
     public void onItemClicked(int type)
     {
 
+    }
+
+    private void startFloating(View view, int position)
+    {
+        if (!MyWindowManager.isWindowShowing())
+        {
+            int[] location = ViewUtils.getViewItemLocation(view);
+            int viewX = location[0];
+            int viewY = location[1];
+
+            MyWindowManager.createSmallWindow(getActivity(), viewX, viewY, 0, 0,
+                ((ImageView) view).getDrawable());
+        }
     }
 
     private class QueryHandler extends AsyncQueryHandler
