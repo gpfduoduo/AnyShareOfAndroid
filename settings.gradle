@@ -1,1 +1,1 @@
-include ':app', ':RadarScanView',':randomtextview', ':rippleview', ':rippleoutlayout', ':p2pmanager'
+include ':app', ':RadarScanView',':randomtextview', ':rippleview', ':rippleoutlayout', ':p2pmanager', 'httpServer'

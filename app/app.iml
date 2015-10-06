@@ -102,6 +102,7 @@
     <orderEntry type="module" module-name="rippleoutlayout" exported="" />
     <orderEntry type="module" module-name="randomtextview" exported="" />
     <orderEntry type="module" module-name="p2pmanager" exported="" />
+    <orderEntry type="module" module-name="httpServer" exported="" />
     <orderEntry type="module" module-name="RadarScanView" exported="" />
   </component>
 </module>

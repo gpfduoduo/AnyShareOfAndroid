@@ -31,4 +31,5 @@ dependencies {
     compile project(':rippleview')
     compile project(':rippleoutlayout')
     compile project(':p2pmanager')
+    compile project(':httpServer')
 }

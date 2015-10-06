@@ -16,10 +16,8 @@ import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.FileSelectActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.ReceiveActivity;
-import com.guo.duoduo.anyshareofandroid.ui.transfer.Send2PC;
 import com.guo.duoduo.anyshareofandroid.utils.PreferenceUtils;
-
-import java.io.File;
+import com.guo.duoduo.httpserver.ui.Send2PCActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .putExtra("name", nameEdit.getText().toString()));
                 break;
             case R.id.main_i_send_2_pc :
-                startActivity(new Intent(MainActivity.this, Send2PC.class));
+                startActivity(new Intent(MainActivity.this, Send2PCActivity.class));
                 break;
         }
     }
