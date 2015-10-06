@@ -3,9 +3,7 @@ package com.guo.duoduo.anyshareofandroid.ui.uientity;
 
 import android.graphics.drawable.Drawable;
 
-import com.guo.duoduo.anyshareofandroid.constant.Constant;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pconstant.P2PConstant;
-
+import com.guo.duoduo.p2pmanager.p2pconstant.P2PConstant;
 
 /**
  * Created by 郭攀峰 on 2015/9/15.

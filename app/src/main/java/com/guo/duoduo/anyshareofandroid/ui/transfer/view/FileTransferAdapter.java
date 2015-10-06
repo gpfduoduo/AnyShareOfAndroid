@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
-import com.guo.duoduo.anyshareofandroid.sdk.p2p.p2pentity.P2PFileInfo;
 import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
+import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 
 /**
