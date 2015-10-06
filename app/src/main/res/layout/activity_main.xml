@@ -76,6 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
+        android:layout_marginBottom="@dimen/fab_margin"
         android:text="@string/main_i_file_2_PC" />
 
 </android.support.design.widget.CoordinatorLayout>
