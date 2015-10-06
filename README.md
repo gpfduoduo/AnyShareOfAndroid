@@ -1,7 +1,7 @@
 # AnyShareOfAndroid
 file transfer on android 仿茄子快传 或者 360文件传输   
 * 在局域网内（如果没有接收方建立热点，发送方接入热点），进行文件（发送方的app、图片等文件，项目中只是进行了手机中的第三方app和手机图片的）的传输。    
-* 添加android与pc之间的文件传输，通过在android设备中实现http server来完成  
+* 添加android与pc之间的文件传输，通过在android设备中实现http server来完成
 
 
 
@@ -29,6 +29,8 @@ file transfer on android 仿茄子快传 或者 360文件传输
 * compile project(':randomtextview')
 * compile project(':rippleview')
 * compile project(':rippleoutlayout')
+* compile project(':p2pmanager')
+* compile project(':httpServer') 作者[本人](https://github.com/gpfduoduo/HttpServerOnAndroid/)
 
 ## 感谢
 杨蔚 及其 儿子 
