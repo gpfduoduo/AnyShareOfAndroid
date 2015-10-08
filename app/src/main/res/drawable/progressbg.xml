@@ -4,7 +4,6 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="5dip" />
-
             <gradient
                 android:endColor="@color/gray"
                 android:startColor="@color/gray" />

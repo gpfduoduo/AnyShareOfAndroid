@@ -45,6 +45,16 @@
             android:name=".ui.transfer.ReceiveActivity"
             android:label="@string/main_i_want_receive"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.setting.AboutActivity"
+            android:label="@string/menu_about"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".ui.setting.ReceiveBrowseActivity"
+            android:label="@string/menu_history"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

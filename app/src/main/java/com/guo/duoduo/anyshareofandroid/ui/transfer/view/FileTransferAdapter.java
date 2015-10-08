@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
+import com.guo.duoduo.p2pmanager.p2pconstant.P2PConstant;
 import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 
@@ -75,6 +76,15 @@ public class FileTransferAdapter extends BaseAdapter
         P2PFileInfo file = Cache.selectedList.get(position);
         if (file != null)
         {
+            if (file.type == P2PConstant.TYPE.APP)
+            {
+                holder.file_image.setImageResource(R.mipmap.icon_apk);
+            }
+            else if (file.type == P2PConstant.TYPE.PIC)
+            {
+                holder.file_image.setImageResource(R.mipmap.icon_image);
+            }
+
             holder.file_name.setText(file.name);
             holder.file_size.setText(DeviceUtils.convertByte(file.size));
             holder.file_trans_speed.setText(file.percent + "%");
@@ -82,8 +92,8 @@ public class FileTransferAdapter extends BaseAdapter
             if (file.percent >= 100)
             {
                 holder.trans_progress.setVisibility(View.INVISIBLE);
-                holder.file_trans_speed
-                        .setText(context.getString(R.string.file_has_completed));
+                holder.file_trans_speed.setText(context
+                        .getString(R.string.file_has_completed));
                 holder.file_trans_speed.setTextColor(context.getResources().getColor(
                     R.color.blue));
             }

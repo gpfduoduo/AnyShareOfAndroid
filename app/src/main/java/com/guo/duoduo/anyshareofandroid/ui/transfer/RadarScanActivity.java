@@ -11,12 +11,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,10 +50,11 @@ public class RadarScanActivity extends BaseActivity
     private P2PManager p2PManager;
     private String alias;
     private RelativeLayout scanRelative;
+    private RelativeLayout scanRocket;
     private ListView fileSendListView;
     private List<P2PNeighbor> neighbors = new ArrayList<>();
     private P2PNeighbor curNeighbor;
-    FileTransferAdapter transferAdapter;
+    private FileTransferAdapter transferAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -98,6 +99,9 @@ public class RadarScanActivity extends BaseActivity
 
         scanRelative = (RelativeLayout) findViewById(R.id.activity_radar_scan_relative);
         scanRelative.setVisibility(View.VISIBLE);
+        scanRocket = (RelativeLayout) findViewById(R.id.activity_radar_rocket_layout);
+        scanRocket.setVisibility(View.GONE);
+
         fileSendListView = (ListView) findViewById(R.id.activity_radar_scan_listview);
         fileSendListView.setVisibility(View.GONE);
 
@@ -109,6 +113,8 @@ public class RadarScanActivity extends BaseActivity
                     @Override
                     public void onRippleViewClicked(View view)
                     {
+                        scanRelative.setVisibility(View.GONE);
+                        scanRocket.setVisibility(View.VISIBLE);
                         //给对方发送文件传输的请求
                         String alias = ((RippleView) (view)).getText().toString();
                         for (int i = 0; i < neighbors.size(); i++)
@@ -140,7 +146,28 @@ public class RadarScanActivity extends BaseActivity
             @Override
             public void BeforeSending()
             {
-                scanRelative.setVisibility(View.GONE);
+                Animation animation = AnimationUtils.loadAnimation(
+                    getApplicationContext(), R.anim.out_to_up);
+                animation.setAnimationListener(new Animation.AnimationListener()
+                {
+                    @Override
+                    public void onAnimationStart(Animation animation)
+                    {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation)
+                    {
+                        scanRocket.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation)
+                    {
+                    }
+                });
+                scanRocket.startAnimation(animation);
+
                 fileSendListView.setVisibility(View.VISIBLE);
 
                 transferAdapter = new FileTransferAdapter(getApplicationContext());
