@@ -34,4 +34,14 @@
     <string name="file_sending">正在发送</string>
     <string name="file_receiving">正在接收</string>
     <string name="file_receive_completed">接收完成</string>
+
+    <string name="about_use">使用</string>
+    <string name="about_use_content">1. 在有WiFi的情况下，两个设备同时接入该WiFi\n2. 接收端点击我要接收，发送端点击我要发送\n3. 然后发送端会发现接收端，此时发送端点击发现的图标，接收端显示发送端的图标\n4. 接收端点击显示的图标，就开始进行文件传输了\n5. 若没有WiFi，接收端点击我要接收，此时接收端会建立WiFi热点，发送端连接此热点即可\n</string>
+    <string name="about_thanks">感谢</string>
+    <string name="about_thanks_content">同事 杨蔚\n老婆 方泰</string>
+
+    <string name="about_library">引用库</string>
+    <string name="about_library_content">com.android.support:support-v4:22.2.0\ncom.android.support:appcompat-v7:22.2.0\ncom.android.support:design:22.2.0\ncom.android.support:recyclerview-v7:22.+\ncom.android.support:cardview-v7:22.0.0\ncom.github.bumptech.glide:glide:3.5.2\nRadarScanView\nrandomtextview\nrippleview\nrippleoutlayout\np2pmanager\nhttpServer\n</string>
+
+    <string name="no_received_content">无接收内容...</string>
 </resources>

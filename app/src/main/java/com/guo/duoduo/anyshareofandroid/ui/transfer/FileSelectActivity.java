@@ -19,7 +19,7 @@ import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.common.BaseActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.AppFragment;
-import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.FragmentAdapter;
+import com.guo.duoduo.anyshareofandroid.ui.common.FragmentAdapter;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.OnSelectItemClickListener;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.PictureFragment;
 import com.guo.duoduo.anyshareofandroid.utils.ToastUtils;

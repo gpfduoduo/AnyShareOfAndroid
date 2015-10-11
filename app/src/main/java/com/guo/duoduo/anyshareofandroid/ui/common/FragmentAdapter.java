@@ -1,4 +1,4 @@
-package com.guo.duoduo.anyshareofandroid.ui.transfer.fragment;
+package com.guo.duoduo.anyshareofandroid.ui.common;
 
 
 import java.util.List;

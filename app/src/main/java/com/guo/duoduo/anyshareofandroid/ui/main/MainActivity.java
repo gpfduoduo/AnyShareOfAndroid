@@ -15,7 +15,7 @@ import android.widget.EditText;
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.setting.AboutActivity;
-import com.guo.duoduo.anyshareofandroid.ui.setting.ReceiveBrowseActivity;
+import com.guo.duoduo.anyshareofandroid.ui.setting.FileBrowseActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.FileSelectActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.ReceiveActivity;
 import com.guo.duoduo.anyshareofandroid.utils.PreferenceUtils;
@@ -87,8 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switch (menuItem.getItemId())
             {
                 case R.id.menu_item_receive_directory :
-                    startActivity(new Intent(MainActivity.this,
-                        ReceiveBrowseActivity.class));
+                    startActivity(new Intent(MainActivity.this, FileBrowseActivity.class));
                     break;
                 case R.id.menu_item_about :
                     startActivity(new Intent(MainActivity.this, AboutActivity.class));

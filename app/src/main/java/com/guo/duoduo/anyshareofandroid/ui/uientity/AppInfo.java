@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 
 import com.guo.duoduo.p2pmanager.p2pconstant.P2PConstant;
 
+
 /**
  * Created by 郭攀峰 on 2015/9/15.
  */
@@ -50,7 +51,10 @@ public class AppInfo implements IInfo
     @Override
     public boolean equals(Object o)
     {
-        return getFilePath().equals(((AppInfo) o).getFilePath());
+        if (getFilePath() != null && ((AppInfo) o).getFilePath() != null)
+            return getFilePath().equals(((AppInfo) o).getFilePath());
+        else
+            return false;
     }
 
 }
