@@ -43,5 +43,7 @@
     <string name="about_library">引用库</string>
     <string name="about_library_content">com.android.support:support-v4:22.2.0\ncom.android.support:appcompat-v7:22.2.0\ncom.android.support:design:22.2.0\ncom.android.support:recyclerview-v7:22.+\ncom.android.support:cardview-v7:22.0.0\ncom.github.bumptech.glide:glide:3.5.2\nRadarScanView\nrandomtextview\nrippleview\nrippleoutlayout\np2pmanager\nhttpServer\n</string>
 
+    <string name="about_receive_path">接收路径</string>
+
     <string name="no_received_content">无接收内容...</string>
 </resources>
