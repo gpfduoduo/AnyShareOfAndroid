@@ -146,7 +146,7 @@ public class ReceiveActivity extends BaseActivity
 
     private void initP2P()
     {
-        p2PManager = new P2PManager();
+        p2PManager = new P2PManager(getApplicationContext());
         P2PNeighbor melonInfo = new P2PNeighbor();
         melonInfo.alias = alias;
         String ip = null;

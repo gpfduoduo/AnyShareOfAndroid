@@ -3,7 +3,12 @@ package com.guo.duoduo.p2pmanager.p2pcore;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
+import android.content.Context;
+import android.net.DhcpInfo;
+import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +24,7 @@ import com.guo.duoduo.p2pmanager.p2pentity.param.ParamTCPNotify;
 import com.guo.duoduo.p2pmanager.p2pinterface.Melon_Callback;
 import com.guo.duoduo.p2pmanager.p2pinterface.ReceiveFile_Callback;
 import com.guo.duoduo.p2pmanager.p2pinterface.SendFile_Callback;
+
 
 /**
  * Created by 郭攀峰 on 2015/9/17.
@@ -40,8 +46,11 @@ public class P2PManager
     private ReceiveFile_Callback receiveFile_callback;
     private SendFile_Callback sendFile_callback;
 
-    public P2PManager()
+    private Context mContext;
+
+    public P2PManager(Context context)
     {
+        mContext = context;
         mHandler = new P2PManagerHandler(this);
     }
 
@@ -55,7 +64,7 @@ public class P2PManager
         p2pThread.isReady();
 
         p2PHandler = (MelonHandler) p2pThread.getLooperHandler();
-        p2PHandler.init(this);
+        p2PHandler.init(this, mContext);
     }
 
     public void receiveFile(ReceiveFile_Callback callback)
@@ -126,6 +135,29 @@ public class P2PManager
     {
         String[] typeStr = {"APP", "Picture"};
         return SAVE_DIR + File.separator + typeStr[type];
+    }
+
+    /**
+     * 获取广播地址
+     * 
+     * @param context
+     * @return
+     * @throws UnknownHostException
+     */
+    public static InetAddress getBroadcastAddress(Context context)
+            throws UnknownHostException
+    {
+        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        DhcpInfo dhcp = wifi.getDhcpInfo();
+        if (dhcp == null)
+        {
+            return InetAddress.getByName("255.255.255.255");
+        }
+        int broadcast = (dhcp.ipAddress & dhcp.netmask) | ~dhcp.netmask;
+        byte[] quads = new byte[4];
+        for (int k = 0; k < 4; k++)
+            quads[k] = (byte) ((broadcast >> k * 8) & 0xFF);
+        return InetAddress.getByAddress(quads);
     }
 
     public static void setSaveDir(String dir)

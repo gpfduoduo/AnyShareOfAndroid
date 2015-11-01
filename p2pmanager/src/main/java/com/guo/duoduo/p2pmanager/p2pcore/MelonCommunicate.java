@@ -13,6 +13,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import org.apache.http.conn.util.InetAddressUtils;
+
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -21,11 +24,9 @@ import com.guo.duoduo.p2pmanager.p2pentity.P2PNeighbor;
 import com.guo.duoduo.p2pmanager.p2pentity.SigMessage;
 import com.guo.duoduo.p2pmanager.p2pentity.param.ParamIPMsg;
 
-import org.apache.http.conn.util.InetAddressUtils;
 
 /**
- * Created by 郭攀峰 on 2015/9/19.
- * 接收端和发送端的udp交互
+ * Created by 郭攀峰 on 2015/9/19. 接收端和发送端的udp交互
  */
 public class MelonCommunicate extends Thread
 {
@@ -43,8 +44,11 @@ public class MelonCommunicate extends Thread
     private String[] mLocalIPs;
     private boolean isStopped = false;
 
-    public MelonCommunicate(P2PManager manager, MelonHandler handler)
+    private Context mContext;
+
+    public MelonCommunicate(P2PManager manager, MelonHandler handler, Context context)
     {
+        mContext = context;
         this.p2PHandler = handler;
         this.p2PManager = manager;
         setPriority(MAX_PRIORITY);
@@ -55,8 +59,9 @@ public class MelonCommunicate extends Thread
     {
         try
         {
-            sendMsg2Peer(InetAddress.getByName(P2PConstant.MULTI_ADDRESS), cmd,
-                recipient, null);
+            sendMsg2Peer(
+            /* InetAddress.getByName(P2PConstant.MULTI_ADDRESS) */
+            P2PManager.getBroadcastAddress(mContext), cmd, recipient, null);
         }
         catch (UnknownHostException e)
         {
@@ -178,8 +183,8 @@ public class MelonCommunicate extends Thread
                     {
                         Log.d(tag, "sig communicate process received udp message = "
                             + strReceive);
-                        ParamIPMsg msg = new ParamIPMsg(strReceive, receivePacket.getAddress(),
-                            receivePacket.getPort());
+                        ParamIPMsg msg = new ParamIPMsg(strReceive,
+                            receivePacket.getAddress(), receivePacket.getPort());
                         p2PHandler.send2Handler(msg.peerMSG.commandNum,
                             P2PConstant.Src.COMMUNICATE, msg.peerMSG.recipient, msg);
                     }

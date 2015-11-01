@@ -3,6 +3,7 @@ package com.guo.duoduo.p2pmanager.p2pcore;
 
 import java.net.InetAddress;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -40,10 +41,10 @@ public class MelonHandler extends Handler
         return neighborManager;
     }
 
-    public void init(P2PManager manager)
+    public void init(P2PManager manager, Context context)
     {
         this.p2PManager = manager;
-        p2PCommunicate = new MelonCommunicate(p2PManager, this);
+        p2PCommunicate = new MelonCommunicate(p2PManager, this, context);
         p2PCommunicate.start();
 
         neighborManager = new MelonManager(p2PManager, this, p2PCommunicate);
