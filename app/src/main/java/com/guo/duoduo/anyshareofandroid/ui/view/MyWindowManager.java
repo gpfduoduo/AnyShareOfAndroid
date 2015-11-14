@@ -35,7 +35,7 @@ public class MyWindowManager
             if (smallWindowParams == null)
             {
                 smallWindowParams = new LayoutParams();
-                smallWindowParams.type = LayoutParams.TYPE_SYSTEM_ALERT;
+                smallWindowParams.type = LayoutParams.TYPE_TOAST; //不需要权限就可以通过WindowManager显示浮动View
                 smallWindowParams.format = PixelFormat.RGB_565;
                 smallWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL
                     | LayoutParams.FLAG_NOT_FOCUSABLE;
