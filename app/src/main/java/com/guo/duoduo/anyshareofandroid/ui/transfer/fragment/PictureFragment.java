@@ -192,7 +192,8 @@ public class PictureFragment extends Fragment
                 }
             }
 
-            if (!cursor.isClosed())
+            /*huawei honor android 7.0 cursor maybe null */
+            if ((null != cursor)&&(!cursor.isClosed()))
             {
                 cursor.close();
             }
