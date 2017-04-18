@@ -20,6 +20,7 @@ import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.common.BaseActivity;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.AppFragment;
 import com.guo.duoduo.anyshareofandroid.ui.common.FragmentAdapter;
+import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.MusicFragment;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.OnSelectItemClickListener;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.fragment.PictureFragment;
 import com.guo.duoduo.anyshareofandroid.utils.ToastUtils;
@@ -75,15 +76,18 @@ public class FileSelectActivity extends BaseActivity implements OnSelectItemClic
         List<String> titles = new ArrayList<>();
         titles.add(getString(R.string.app));
         titles.add(getString(R.string.picture));
+        titles.add(getString(R.string.music));
 
         tabLayout = (TabLayout) findViewById(R.id.activity_file_tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText(titles.get(0)));
-        tabLayout.addTab(tabLayout.newTab().setText(titles.get(1)));
+        for(int i = 0;i<titles.size();i++) {
+            tabLayout.addTab(tabLayout.newTab().setText(titles.get(i)));
+        }
 
         viewPager = (ViewPager) findViewById(R.id.activity_file_viewpager);
         List<android.support.v4.app.Fragment> fragments = new ArrayList<>();
         fragments.add(new AppFragment());
         fragments.add(new PictureFragment());
+        fragments.add(new MusicFragment());
 
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(),
             fragments, titles);
