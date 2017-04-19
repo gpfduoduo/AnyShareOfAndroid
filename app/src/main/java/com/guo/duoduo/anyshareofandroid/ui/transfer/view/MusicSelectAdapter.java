@@ -27,9 +27,9 @@ public class MusicSelectAdapter extends RecyclerView.Adapter<MusicSelectAdapter.
         void onItemClick(View view, int position);
     }
 
-    private AppSelectAdapter.OnItemClickListener onItemClickListener;
+    private MusicSelectAdapter.OnItemClickListener onItemClickListener;
 
-    public void setOnItemClickListener(AppSelectAdapter.OnItemClickListener listener)
+    public void setOnItemClickListener(MusicSelectAdapter.OnItemClickListener listener)
     {
         onItemClickListener = listener;
     }

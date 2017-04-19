@@ -15,7 +15,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,7 +40,7 @@ import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 /**
  * Created by 郭攀峰 on 2015/9/16.
  */
-public class PictureFragment extends Fragment
+public class PictureFragment extends BasicFragment
     implements
         ImageSelectAdapter.OnItemClickListener,
         OnSelectItemClickListener
@@ -77,10 +76,20 @@ public class PictureFragment extends Fragment
             adapter.setOnItemClickListener(this);
             recyclerView.setAdapter(adapter);
 
-            getPictures();
+            requestReadExternalPermission();
         }
 
         return view;
+    }
+
+    @Override
+    protected void onReadExternalPermissionPermit(){
+        getPictures();
+    }
+
+    @Override
+    protected void onReadExternalPermissionDenial(){
+
     }
 
     private void getPictures()
@@ -156,6 +165,11 @@ public class PictureFragment extends Fragment
             MyWindowManager.createSmallWindow(getActivity(), viewX, viewY, 0, 0,
                 ((ImageView) view).getDrawable());
         }
+    }
+
+    @Override
+    protected String getFragmentTag() {
+        return tag;
     }
 
     private class QueryHandler extends AsyncQueryHandler
