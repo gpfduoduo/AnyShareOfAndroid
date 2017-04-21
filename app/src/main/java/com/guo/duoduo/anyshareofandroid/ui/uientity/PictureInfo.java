@@ -47,8 +47,7 @@ public class PictureInfo implements IInfo
     }
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (getFilePath() != null && ((PictureInfo) o).getFilePath() != null)
             return getFilePath().equals(((PictureInfo) o).getFilePath());
         else

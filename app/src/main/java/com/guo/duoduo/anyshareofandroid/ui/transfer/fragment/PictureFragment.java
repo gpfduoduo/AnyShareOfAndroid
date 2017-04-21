@@ -53,7 +53,7 @@ public class PictureFragment extends BasicFragment
     private ProgressBar progressBar;
     private ImageSelectAdapter adapter;
 
-    private List<IInfo> picList = new ArrayList<>();
+    private final List<IInfo> picList = new ArrayList<>();
     private PictureHandler handler;
     private QueryHandler queryHandler;
 
@@ -61,9 +61,7 @@ public class PictureFragment extends BasicFragment
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(tag, "PictureFragment onCreateView function");
         if (view == null)
         {
@@ -92,10 +90,8 @@ public class PictureFragment extends BasicFragment
 
     }
 
-    private void getPictures()
-    {
-        if (queryHandler == null)
-        {
+    private void getPictures() {
+        if (queryHandler == null) {
             queryHandler = new QueryHandler(getActivity());
         }
         queryHandler.startQuery(1, null, MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -106,12 +102,10 @@ public class PictureFragment extends BasicFragment
     @Override
     public void onAttach(Activity activity)
     {
-        try
-        {
+        try {
             clickListener = (OnSelectItemClickListener) activity;
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             e.printStackTrace();
         }
         super.onAttach(activity);
@@ -126,20 +120,17 @@ public class PictureFragment extends BasicFragment
     @Override
     public void onItemClick(View view, int position)
     {
-        PictureInfo info = ((PictureInfo) adapter.getItem(position));
+        final PictureInfo info = ((PictureInfo) adapter.getItem(position));
 
-        P2PFileInfo fileInfo = new P2PFileInfo();
+        final P2PFileInfo fileInfo = new P2PFileInfo();
         fileInfo.name = info.getFileName();
         fileInfo.type = P2PConstant.TYPE.PIC;
         fileInfo.size = new File(info.getFilePath()).length();
         fileInfo.path = info.getFilePath();
 
-        if (Cache.selectedList.contains(fileInfo))
-        {
+        if (Cache.selectedList.contains(fileInfo)) {
             Cache.selectedList.remove(fileInfo);
-        }
-        else
-        {
+        } else {
             Cache.selectedList.add(fileInfo);
 
             startFloating(view, position);
@@ -149,18 +140,15 @@ public class PictureFragment extends BasicFragment
     }
 
     @Override
-    public void onItemClicked(int type)
-    {
+    public void onItemClicked(int type) {
 
     }
 
-    private void startFloating(View view, int position)
-    {
-        if (!MyWindowManager.isWindowShowing())
-        {
-            int[] location = ViewUtils.getViewItemLocation(view);
-            int viewX = location[0];
-            int viewY = location[1];
+    private void startFloating(View view, int position) {
+        if (!MyWindowManager.isWindowShowing()) {
+            final int[] location = ViewUtils.getViewItemLocation(view);
+            final int viewX = location[0];
+            final int viewY = location[1];
 
             MyWindowManager.createSmallWindow(getActivity(), viewX, viewY, 0, 0,
                 ((ImageView) view).getDrawable());
@@ -172,29 +160,21 @@ public class PictureFragment extends BasicFragment
         return tag;
     }
 
-    private class QueryHandler extends AsyncQueryHandler
-    {
-        public QueryHandler(Context context)
-        {
+    private class QueryHandler extends AsyncQueryHandler {
+        public QueryHandler(Context context) {
             super(context.getContentResolver());
         }
 
         @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor)
-        {
-            List<IInfo> picInfo = new ArrayList<>();
+        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+            final List<IInfo> picInfo = new ArrayList<>();
 
-            if (cursor != null)
-            {
-                for (cursor.moveToFirst(); !(cursor.isAfterLast()); cursor.moveToNext())
-                {
-                    String str = cursor.getString(0);
-                    if (str.endsWith(".jpg") || str.endsWith(".png")
-                        || str.endsWith(".jpeg"))
-                    {
-                        File file = new File(str);
-                        if (file.exists())
-                        {
+            if (cursor != null) {
+                for (cursor.moveToFirst(); !(cursor.isAfterLast()); cursor.moveToNext()) {
+                    final String str = cursor.getString(0);
+                    if (str.endsWith(".jpg") || str.endsWith(".png") || str.endsWith(".jpeg")) {
+                        final File file = new File(str);
+                        if (file.exists()) {
                             PictureInfo info = new PictureInfo();
                             info.picPath = str;
                             info.picSize = DeviceUtils.getFileSize(file.length());
@@ -207,8 +187,7 @@ public class PictureFragment extends BasicFragment
             }
 
             /*huawei honor android 7.0 cursor maybe null */
-            if ((null != cursor)&&(!cursor.isClosed()))
-            {
+            if ((null != cursor)&&(!cursor.isClosed())) {
                 cursor.close();
             }
 
@@ -220,19 +199,16 @@ public class PictureFragment extends BasicFragment
         }
     }
 
-    private static class PictureHandler extends Handler
-    {
+    private static class PictureHandler extends Handler {
         private WeakReference<PictureFragment> weakReference;
 
-        public PictureHandler(PictureFragment fragment)
-        {
+        public PictureHandler(PictureFragment fragment) {
             weakReference = new WeakReference<>(fragment);
         }
 
         @Override
-        public void handleMessage(Message msg)
-        {
-            PictureFragment fragment = weakReference.get();
+        public void handleMessage(Message msg) {
+            final PictureFragment fragment = weakReference.get();
             if (fragment == null)
                 return;
             if (fragment.getActivity() == null)
@@ -240,8 +216,7 @@ public class PictureFragment extends BasicFragment
             if (fragment.getActivity().isFinishing())
                 return;
 
-            switch (msg.what)
-            {
+            switch (msg.what) {
                 case Constant.MSG.PICTURE_OK :
                     fragment.picList.clear();
                     fragment.picList.addAll((ArrayList<IInfo>) msg.obj);

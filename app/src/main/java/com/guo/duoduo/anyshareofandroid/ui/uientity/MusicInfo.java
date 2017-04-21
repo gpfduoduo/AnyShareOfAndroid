@@ -10,12 +10,12 @@ public class MusicInfo implements IInfo {
 
     @Override
     public String getFilePath() {
-        return null;
+        return filePath;
     }
 
     @Override
     public String getFileSize() {
-        return null;
+        return fileSize;
     }
 
     @Override
@@ -30,6 +30,24 @@ public class MusicInfo implements IInfo {
 
     @Override
     public String getFileName() {
-        return null;
+        return fileName;
     }
+
+    public void setFileName(final String fileName){
+        this.fileName = fileName;
+    }
+
+    public void setFilePath(final String filePath){
+        this.filePath = filePath;
+    }
+
+    public void setFileSize(final String fileSize){
+        this.fileSize = fileSize;
+    }
+
+    private String fileName;
+
+    private String filePath;
+
+    private String fileSize;
 }

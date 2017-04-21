@@ -21,6 +21,8 @@ import com.guo.duoduo.anyshareofandroid.constant.Constant;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.view.MusicSelectAdapter;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.MusicInfo;
+import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
+
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -42,16 +44,13 @@ public class MusicFragment extends BasicFragment
     private ProgressBar progressBar;
     private MusicSelectAdapter adapter;
 
-    private List<IInfo> musicList = new ArrayList<>();
+    private final List<IInfo> musicList = new ArrayList<>();
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(tag, "MusicFragment onCreateView function");
-        if (view == null)
-        {
+        if (view == null) {
             handler = new MusicFragment.MusicHandler(this);
             view = inflater.inflate(R.layout.view_select, container, false);
             recyclerView = (RecyclerView) view.findViewById(R.id.recycleview);
@@ -89,8 +88,7 @@ public class MusicFragment extends BasicFragment
 
     private void getMusics()
     {
-        if (queryHandler == null)
-        {
+        if (queryHandler == null) {
             queryHandler = new MusicFragment.QueryHandler(getActivity());
         }
         queryHandler.startQuery(1, null, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -105,41 +103,35 @@ public class MusicFragment extends BasicFragment
 
     private class QueryHandler extends AsyncQueryHandler
     {
-        public QueryHandler(Context context)
-        {
+        public QueryHandler(Context context) {
             super(context.getContentResolver());
         }
 
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor)
         {
-            List<IInfo> musicInfo = new ArrayList<>();
+            final List<IInfo> musicInfo = new ArrayList<>();
 
-            if (cursor != null)
-            {
-                for (cursor.moveToFirst(); !(cursor.isAfterLast()); cursor.moveToNext())
-                {
+            if (cursor != null) {
+                for (cursor.moveToFirst(); !(cursor.isAfterLast()); cursor.moveToNext()) {
                     String str = cursor.getString(0);
-                    if (str.endsWith(".mp3") || str.endsWith(".wav")
-                            || str.endsWith(".mp4"))
-                    {
-                        File file = new File(str);
-                        if (file.exists())
-                        {
-                            MusicInfo info = new MusicInfo();
-                            //info.picPath = str;
-                            //info.picSize = DeviceUtils.getFileSize(file.length());
-                            //info.picName = DeviceUtils.getFileName(str);
-                            if (!musicInfo.contains(info))
+                    if (str.endsWith(".mp3") || str.endsWith(".wav") || str.endsWith(".mp4")) {
+                        final File file = new File(str);
+                        if (file.exists()) {
+                            final MusicInfo info = new MusicInfo();
+                            info.setFileName(DeviceUtils.getFileName(str));
+                            info.setFilePath(str);
+                            info.setFileSize(DeviceUtils.getFileSize(file.length()));
+                            if (!musicInfo.contains(info)) {
                                 musicInfo.add(info);
+                            }
                         }
                     }
                 }
             }
 
             /*huawei honor android 7.0 cursor maybe null */
-            if ((null != cursor)&&(!cursor.isClosed()))
-            {
+            if ((null != cursor)&&(!cursor.isClosed())) {
                 cursor.close();
             }
 
@@ -151,19 +143,16 @@ public class MusicFragment extends BasicFragment
         }
     }
 
-    private static class MusicHandler extends Handler
-    {
+    private static class MusicHandler extends Handler {
         private WeakReference<MusicFragment> weakReference;
 
-        public MusicHandler(MusicFragment fragment)
-        {
+        public MusicHandler(MusicFragment fragment) {
             weakReference = new WeakReference<>(fragment);
         }
 
         @Override
-        public void handleMessage(Message msg)
-        {
-            MusicFragment fragment = weakReference.get();
+        public void handleMessage(Message msg) {
+            final MusicFragment fragment = weakReference.get();
             if (fragment == null)
                 return;
             if (fragment.getActivity() == null)
@@ -171,8 +160,7 @@ public class MusicFragment extends BasicFragment
             if (fragment.getActivity().isFinishing())
                 return;
 
-            switch (msg.what)
-            {
+            switch (msg.what) {
                 case Constant.MSG.MUSIC_OK :
                     fragment.musicList.clear();
                     fragment.musicList.addAll((ArrayList<IInfo>) msg.obj);
