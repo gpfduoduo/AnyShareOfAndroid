@@ -41,8 +41,7 @@ import com.guo.duoduo.rippleoutview.RippleView;
 /**
  * Created by 郭攀峰 on 2015/9/12.
  */
-public class RadarScanActivity extends BaseActivity
-{
+public class RadarScanActivity extends BaseActivity {
     private static final String tag = RadarScanActivity.class.getSimpleName();
 
     private RandomTextView randomTextView;
