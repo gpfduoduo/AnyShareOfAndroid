@@ -17,7 +17,6 @@ import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -84,10 +83,14 @@ public class MusicSelectAdapter extends RecyclerView.Adapter<MusicSelectAdapter.
         return list.size();
     }
 
+    public IInfo getItem(int position) {
+        return list.get(position);
+    }
+
     @Override
     public MusicSelectAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final MusicSelectAdapter.MyViewHolder holder = new MusicSelectAdapter.MyViewHolder(LayoutInflater.from(context).inflate(
-                R.layout.view_app_item, null));
+                R.layout.view_music_item, null));
         return holder;
     }
 
