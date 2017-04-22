@@ -40,11 +40,7 @@ import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 /**
  * Created by 郭攀峰 on 2015/9/16.
  */
-public class PictureFragment extends BasicFragment
-    implements
-        ImageSelectAdapter.OnItemClickListener,
-        OnSelectItemClickListener
-{
+public class PictureFragment extends BasicFragment implements ImageSelectAdapter.OnItemClickListener, OnSelectItemClickListener {
 
     private static final String tag = PictureFragment.class.getSimpleName();
 
@@ -63,8 +59,7 @@ public class PictureFragment extends BasicFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(tag, "PictureFragment onCreateView function");
-        if (view == null)
-        {
+        if (view == null) {
             handler = new PictureHandler(this);
             view = inflater.inflate(R.layout.view_select, container, false);
             recyclerView = (RecyclerView) view.findViewById(R.id.recycleview);
@@ -100,8 +95,7 @@ public class PictureFragment extends BasicFragment
     }
 
     @Override
-    public void onAttach(Activity activity)
-    {
+    public void onAttach(Activity activity) {
         try {
             clickListener = (OnSelectItemClickListener) activity;
         }
@@ -112,14 +106,12 @@ public class PictureFragment extends BasicFragment
     }
 
     @Override
-    public void onDetach()
-    {
+    public void onDetach() {
         super.onDetach();
     }
 
     @Override
-    public void onItemClick(View view, int position)
-    {
+    public void onItemClick(View view, int position) {
         final PictureInfo info = ((PictureInfo) adapter.getItem(position));
 
         final P2PFileInfo fileInfo = new P2PFileInfo();
@@ -179,8 +171,9 @@ public class PictureFragment extends BasicFragment
                             info.picPath = str;
                             info.picSize = DeviceUtils.getFileSize(file.length());
                             info.picName = DeviceUtils.getFileName(str);
-                            if (!picInfo.contains(info))
+                            if (!picInfo.contains(info)) {
                                 picInfo.add(info);
+                            }
                         }
                     }
                 }
@@ -192,7 +185,7 @@ public class PictureFragment extends BasicFragment
             }
 
             Log.d(tag, "pic size =" + picInfo.size());
-            Message msg = Message.obtain();
+            final Message msg = Message.obtain();
             msg.what = Constant.MSG.PICTURE_OK;
             msg.obj = picInfo;
             handler.sendMessage(msg);
@@ -221,6 +214,7 @@ public class PictureFragment extends BasicFragment
                     fragment.picList.clear();
                     fragment.picList.addAll((ArrayList<IInfo>) msg.obj);
                     fragment.progressBar.setVisibility(View.GONE);
+                    fragment.adapter.setPictures(fragment.picList);
                     fragment.adapter.notifyDataSetChanged();
                     break;
             }

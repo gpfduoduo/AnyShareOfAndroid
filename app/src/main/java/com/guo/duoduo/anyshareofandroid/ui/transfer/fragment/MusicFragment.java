@@ -86,8 +86,7 @@ public class MusicFragment extends BasicFragment
 
     }
 
-    private void getMusics()
-    {
+    private void getMusics() {
         if (queryHandler == null) {
             queryHandler = new MusicFragment.QueryHandler(getActivity());
         }
@@ -136,7 +135,7 @@ public class MusicFragment extends BasicFragment
             }
 
             Log.d(tag, "music size =" + musicInfo.size());
-            Message msg = Message.obtain();
+            final Message msg = Message.obtain();
             msg.what = Constant.MSG.MUSIC_OK;
             msg.obj = musicInfo;
             handler.sendMessage(msg);
@@ -165,6 +164,7 @@ public class MusicFragment extends BasicFragment
                     fragment.musicList.clear();
                     fragment.musicList.addAll((ArrayList<IInfo>) msg.obj);
                     fragment.progressBar.setVisibility(View.GONE);
+                    fragment.adapter.setMusics(fragment.musicList);
                     fragment.adapter.notifyDataSetChanged();
                     break;
             }
