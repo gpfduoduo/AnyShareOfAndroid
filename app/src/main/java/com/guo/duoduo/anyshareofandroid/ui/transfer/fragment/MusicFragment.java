@@ -137,7 +137,7 @@ public class MusicFragment extends BasicFragment
             queryHandler = new MusicFragment.QueryHandler(getActivity());
         }
         queryHandler.startQuery(1, null, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                new String[]{MediaStore.Audio.Media.DATA, MediaStore.Audio.Media._ID},
+                new String[]{MediaStore.Audio.Media.DATA, MediaStore.Audio.Media._ID,MediaStore.Audio.Media.TITLE,MediaStore.Audio.Media.ALBUM_ID},
                 null, null, MediaStore.Audio.Media.DATE_MODIFIED + " DESC");
     }
 
@@ -157,12 +157,12 @@ public class MusicFragment extends BasicFragment
 
             if (cursor != null) {
                 for (cursor.moveToFirst(); !(cursor.isAfterLast()); cursor.moveToNext()) {
-                    String str = cursor.getString(0);
+                    final String str = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                     if (str.endsWith(".mp3") || str.endsWith(".wav") || str.endsWith(".mp4")) {
                         final File file = new File(str);
                         if (file.exists()) {
                             final MusicInfo info = new MusicInfo();
-                            info.setFileName(DeviceUtils.getFileName(str));
+                            info.setFileName(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)));
                             info.setFilePath(str);
                             info.setFileSize(DeviceUtils.getFileSize(file.length()));
                             if (!musicInfo.contains(info)) {

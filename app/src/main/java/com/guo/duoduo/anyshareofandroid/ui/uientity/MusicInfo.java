@@ -27,7 +27,7 @@ public class MusicInfo implements IInfo {
 
     @Override
     public Drawable getFileIcon() {
-        return null;
+        return songAlbum;
     }
 
     @Override
@@ -47,10 +47,13 @@ public class MusicInfo implements IInfo {
         this.fileSize = fileSize;
     }
 
+    public void setFileIcon(final Drawable drawable){
+        this.songAlbum = drawable;
+    }
+
     private String fileName;
-
     private String filePath;
-
     private String fileSize;
+    private Drawable songAlbum;
     private final int type = P2PConstant.TYPE.MUSIC;
 }

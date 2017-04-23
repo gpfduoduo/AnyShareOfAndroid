@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
@@ -50,7 +49,7 @@ public class MusicSelectAdapter extends RecyclerView.Adapter<MusicSelectAdapter.
 
     @Override
     public void onBindViewHolder(final MusicSelectAdapter.MyViewHolder holder, final int position) {
-        Glide.with(context).load(list.get(position).getFilePath()).into(holder.imageView);
+       // Glide.with(context).load(list.get(position).getFilePath()).into(holder.imageView);
 
         final IInfo info = list.get(position);
         final P2PFileInfo fileInfo = new P2PFileInfo();
@@ -64,8 +63,9 @@ public class MusicSelectAdapter extends RecyclerView.Adapter<MusicSelectAdapter.
         else
             holder.music_choice.setVisibility(View.INVISIBLE);
 
-        holder.musicName.setText(list.get(position).getFileName());
-        holder.musicSize.setText(list.get(position).getFileSize());
+        holder.musicName.setText(info.getFileName());
+        holder.musicSize.setText(info.getFileSize());
+        //holder.imageView.setImageDrawable(info.getFileIcon());
 
         holder.itemLayout.setOnClickListener(new View.OnClickListener() {
             @Override

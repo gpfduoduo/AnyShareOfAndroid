@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/music_item_layout"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:background="@color/ltblue"
@@ -9,15 +9,16 @@
 
     <RelativeLayout
         android:id="@+id/video_image_relative"
-        android:layout_width="40dip"
+        android:layout_width="match_parent"
         android:layout_height="40dip">
 
         <ImageView
             android:id="@+id/MusicIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dip"
+            android:src="@drawable/play_img_default"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter" />
 
@@ -25,7 +26,7 @@
             android:id="@+id/music_choice"
             android:layout_width="15dip"
             android:layout_height="15dip"
-            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:contentDescription="@string/app_name"
             android:src="@mipmap/editable_mode_checked_tag"></ImageView>
@@ -39,7 +40,7 @@
         android:gravity="center_horizontal"
         android:maxLines="1"
         android:textColor="#666"
-        android:textSize="12sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/MusicSize"
@@ -48,6 +49,6 @@
         android:ellipsize="marquee"
         android:gravity="center_horizontal"
         android:textColor="#666"
-        android:textSize="12sp" />
+        android:textSize="20sp" />
 
 </LinearLayout>
