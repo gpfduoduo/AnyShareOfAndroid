@@ -67,7 +67,7 @@ public class MusicSelectAdapter extends RecyclerView.Adapter<MusicSelectAdapter.
         holder.musicName.setText(list.get(position).getFileName());
         holder.musicSize.setText(list.get(position).getFileSize());
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.itemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemClickListener != null) {
@@ -103,11 +103,11 @@ public class MusicSelectAdapter extends RecyclerView.Adapter<MusicSelectAdapter.
 
         public MyViewHolder(View view) {
             super(view);
-            imageView = (ImageView) view.findViewById(R.id.AppIcon);
-            musicName = (TextView) view.findViewById(R.id.AppName);
-            musicSize = (TextView) view.findViewById(R.id.AppSize);
-            music_choice = (ImageView) view.findViewById(R.id.app_choice);
-            itemLayout = (LinearLayout) view.findViewById(R.id.app_item_layout);
+            imageView = (ImageView) view.findViewById(R.id.MusicIcon);
+            musicName = (TextView) view.findViewById(R.id.MusicName);
+            musicSize = (TextView) view.findViewById(R.id.MusicSize);
+            music_choice = (ImageView) view.findViewById(R.id.music_choice);
+            itemLayout = (LinearLayout) view.findViewById(R.id.music_item_layout);
         }
     }
 

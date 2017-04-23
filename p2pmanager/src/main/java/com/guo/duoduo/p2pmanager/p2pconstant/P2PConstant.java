@@ -24,6 +24,7 @@ public class P2PConstant
     {
         public static final int APP = 0;
         public static final int PIC = 1;
+        public static final int MUSIC = 2;
     }
 
     public interface UI_MSG

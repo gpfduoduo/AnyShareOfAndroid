@@ -2,6 +2,8 @@ package com.guo.duoduo.anyshareofandroid.ui.uientity;
 
 import android.graphics.drawable.Drawable;
 
+import com.guo.duoduo.p2pmanager.p2pconstant.P2PConstant;
+
 /**
  * Created by longsky on 2017/4/18.
  */
@@ -20,7 +22,7 @@ public class MusicInfo implements IInfo {
 
     @Override
     public int getFileType() {
-        return 0;
+        return type;
     }
 
     @Override
@@ -50,4 +52,5 @@ public class MusicInfo implements IInfo {
     private String filePath;
 
     private String fileSize;
+    private final int type = P2PConstant.TYPE.MUSIC;
 }

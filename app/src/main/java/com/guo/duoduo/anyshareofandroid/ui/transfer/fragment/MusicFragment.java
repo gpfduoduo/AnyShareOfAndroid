@@ -24,7 +24,6 @@ import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.transfer.view.MusicSelectAdapter;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.MusicInfo;
-import com.guo.duoduo.anyshareofandroid.ui.uientity.PictureInfo;
 import com.guo.duoduo.anyshareofandroid.ui.view.MyWindowManager;
 import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
 import com.guo.duoduo.anyshareofandroid.utils.ViewUtils;
@@ -103,11 +102,11 @@ public class MusicFragment extends BasicFragment
 
     @Override
     public void onItemClick(View view, int position) {
-        final PictureInfo info = ((PictureInfo) adapter.getItem(position));
+        final MusicInfo info = ((MusicInfo) adapter.getItem(position));
 
         final P2PFileInfo fileInfo = new P2PFileInfo();
         fileInfo.name = info.getFileName();
-        fileInfo.type = P2PConstant.TYPE.PIC;
+        fileInfo.type = P2PConstant.TYPE.MUSIC;
         fileInfo.size = new File(info.getFilePath()).length();
         fileInfo.path = info.getFilePath();
 
@@ -119,7 +118,7 @@ public class MusicFragment extends BasicFragment
             startFloating(view, position);
         }
         adapter.notifyDataSetChanged();
-        clickListener.onItemClicked(P2PConstant.TYPE.PIC);
+        clickListener.onItemClicked(P2PConstant.TYPE.MUSIC);
     }
 
     private void startFloating(View view, int position) {
