@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.guo.duoduo.anyshareofandroid.R;
-import com.guo.duoduo.anyshareofandroid.ui.setting.view.ReceivedAppAdapter;
+import com.guo.duoduo.anyshareofandroid.ui.setting.view.ReceivedMusicAdapter;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.AppInfo;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 import com.guo.duoduo.anyshareofandroid.utils.ApkTools;
@@ -69,32 +69,32 @@ public class ReceivedMusic extends Fragment {
     }
 
     private void initData() {
-        final String appDir = P2PManager.getSavePath(P2PConstant.TYPE.MUSIC);
-        Log.d(tag, "music dir = " + appDir);
+        final String musicDir = P2PManager.getSavePath(P2PConstant.TYPE.MUSIC);
+        Log.d(tag, "music dir = " + musicDir);
 
-        if (!TextUtils.isEmpty(appDir)) {
-            File appFile = new File(appDir);
-            if (appFile.exists() && appFile.isDirectory()) {
-                File[] appFileArray = appFile.listFiles();
-                if (appFileArray != null && appFileArray.length > 0) {
+        if (!TextUtils.isEmpty(musicDir)) {
+            File musicFile = new File(musicDir);
+            if (musicFile.exists() && musicFile.isDirectory()) {
+                File[] musicFileArray = musicFile.listFiles();
+                if (musicFileArray != null && musicFileArray.length > 0) {
                     mRecyclerView.setVisibility(View.VISIBLE);
                     mNoContentTextView.setVisibility(View.GONE);
-                    mAppList = new ArrayList<>();
-                    for (File app : appFileArray) {
+                    mMusics = new ArrayList<>();
+                    for (File music : musicFileArray) {
                         AppInfo appInfo = new AppInfo();
-                        if (app.isFile() && (app.getAbsolutePath().endsWith(".mp3") || app.getAbsolutePath().endsWith(".mp4") || app.getAbsolutePath().endsWith(".wav") )) {
-                            appInfo.appLabel = app.getName();
-                            appInfo.appSize = DeviceUtils.convertByte(app.length());
+                        if (music.isFile() && (music.getAbsolutePath().endsWith(".mp3") || music.getAbsolutePath().endsWith(".mp4") || music.getAbsolutePath().endsWith(".wav") )) {
+                            appInfo.appLabel = music.getName();
+                            appInfo.appSize = DeviceUtils.convertByte(music.length());
                             appInfo.appIcon = ApkTools.geTApkIcon(getActivity(),
-                                    app.getAbsolutePath());
-                            appInfo.appFilePath = app.getAbsolutePath();
+                                    music.getAbsolutePath());
+                            appInfo.appFilePath = music.getAbsolutePath();
 
-                            if (!mAppList.contains(appInfo))
-                                mAppList.add(appInfo);
+                            if (!mMusics.contains(appInfo))
+                                mMusics.add(appInfo);
                         }
                     }
 
-                    mAdapter = new ReceivedAppAdapter(getActivity(), mAppList);
+                    mAdapter = new ReceivedMusicAdapter(getActivity(), mMusics);
                     mRecyclerView.setAdapter(mAdapter);
                 }
             }
@@ -103,8 +103,8 @@ public class ReceivedMusic extends Fragment {
 
     private static final String tag = ReceivedMusic.class.getSimpleName();
     private RecyclerView mRecyclerView;
-    private ReceivedAppAdapter mAdapter;
-    private ArrayList<IInfo> mAppList;
+    private ReceivedMusicAdapter mAdapter;
+    private ArrayList<IInfo> mMusics;
     private TextView mNoContentTextView;
     private View mView;
 
