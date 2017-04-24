@@ -105,7 +105,7 @@ public class MusicFragment extends BasicFragment
         final MusicInfo info = ((MusicInfo) adapter.getItem(position));
 
         final P2PFileInfo fileInfo = new P2PFileInfo();
-        fileInfo.name = info.getFileName();
+        fileInfo.name = DeviceUtils.getFileName(info.getFilePath());
         fileInfo.type = P2PConstant.TYPE.MUSIC;
         fileInfo.size = new File(info.getFilePath()).length();
         fileInfo.path = info.getFilePath();
