@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
+import com.guo.duoduo.anyshareofandroid.utils.DeviceUtils;
 import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 import java.io.File;
@@ -53,7 +54,7 @@ public class MusicSelectAdapter extends RecyclerView.Adapter<MusicSelectAdapter.
 
         final IInfo info = list.get(position);
         final P2PFileInfo fileInfo = new P2PFileInfo();
-        fileInfo.name = info.getFileName();
+        fileInfo.name = DeviceUtils.getFileName(info.getFilePath());
         fileInfo.type = info.getFileType();
         fileInfo.size = new File(info.getFilePath()).length();
         fileInfo.path = info.getFilePath();
