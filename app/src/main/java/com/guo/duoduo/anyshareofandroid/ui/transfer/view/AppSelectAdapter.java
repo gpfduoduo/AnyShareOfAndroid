@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.sdk.cache.Cache;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
+import com.guo.duoduo.anyshareofandroid.utils.BitmapHelper;
 import com.guo.duoduo.p2pmanager.p2pentity.P2PFileInfo;
 
 
@@ -51,7 +53,8 @@ public class AppSelectAdapter extends RecyclerView.Adapter<AppSelectAdapter.MyVi
 
     @Override
     public void onBindViewHolder(final AppSelectAdapter.MyViewHolder holder, final int position) {
-        holder.imageView.setImageBitmap(((BitmapDrawable) list.get(position).getFileIcon()).getBitmap());
+        final Bitmap bm = BitmapHelper.getBitmapFromDrawable(list.get(position).getFileIcon());
+        holder.imageView.setImageBitmap(bm);
 
         final IInfo info = list.get(position);
         final P2PFileInfo fileInfo = new P2PFileInfo();
