@@ -49,8 +49,7 @@ public class AppInfo implements IInfo
     }
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (getFilePath() != null && ((AppInfo) o).getFilePath() != null)
             return getFilePath().equals(((AppInfo) o).getFilePath());
         else

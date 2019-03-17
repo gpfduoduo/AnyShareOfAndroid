@@ -6,17 +6,11 @@ import android.graphics.drawable.Drawable;
 /**
  * Created by 郭攀峰 on 2015/9/16.
  */
-public interface IInfo
-{
-
-    public String getFilePath();
-
-    public String getFileSize();
-
-    public int getFileType();
-
-    public Drawable getFileIcon();
-
-    public String getFileName();
+public interface IInfo {
+    String getFilePath();
+    String getFileSize();
+    int getFileType();
+    Drawable getFileIcon();
+    String getFileName();
 
 }

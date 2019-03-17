@@ -1,9 +1,5 @@
 package com.guo.duoduo.anyshareofandroid.utils;
 
-
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Log;
 import android.view.View;
 
 

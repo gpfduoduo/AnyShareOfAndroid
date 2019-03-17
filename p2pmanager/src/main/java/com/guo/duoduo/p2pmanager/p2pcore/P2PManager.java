@@ -133,7 +133,7 @@ public class P2PManager
 
     public static String getSavePath(int type)
     {
-        String[] typeStr = {"APP", "Picture"};
+        String[] typeStr = {"APP", "Picture","Music"};
         return SAVE_DIR + File.separator + typeStr[type];
     }
 

@@ -4,6 +4,7 @@ package com.guo.duoduo.anyshareofandroid.ui.view;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
@@ -46,10 +47,19 @@ public class MyWindowManager
                 smallWindowParams.y = (int) y;
             }
             smallWindow.setParams(smallWindowParams);
-            windowManager.addView(smallWindow, smallWindowParams);
+            try {
+                windowManager.addView(smallWindow, smallWindowParams);
+            } catch (WindowManager.BadTokenException e) {
+                /* ignore */
+                Log.d("AnyShareOfAndroid",e.getMessage());
+            }
         }
-
-        smallWindow.launchImg();
+        try {
+            smallWindow.launchImg();
+        } catch (WindowManager.BadTokenException e) {
+            /* ignore */
+            Log.d("AnyShareOfAndroid",e.getMessage());
+        }
     }
 
     private static WindowManager getWindowManager(Context context)

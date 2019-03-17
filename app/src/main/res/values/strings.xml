@@ -19,6 +19,7 @@
     <string name="file_select">选择文件</string>
     <string name="picture">图片</string>
     <string name="app">应用</string>
+    <string name="music">音乐</string>
 
     <string name="send_connect_to">发送端连接到： %s </string>
 

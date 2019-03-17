@@ -18,6 +18,7 @@ public class Constant
     {
         public static final int PICTURE_OK = 0;
         public static final int APP_OK = 1;
+        public static final int MUSIC_OK = 2;
     }
 
 }

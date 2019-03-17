@@ -1,9 +1,5 @@
 package com.guo.duoduo.anyshareofandroid.ui.setting.view;
 
-
-import java.io.File;
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,33 +17,33 @@ import com.guo.duoduo.anyshareofandroid.R;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.AppInfo;
 import com.guo.duoduo.anyshareofandroid.ui.uientity.IInfo;
 
+import java.io.File;
+import java.util.ArrayList;
 
 /**
- * Created by 郭攀峰 on 2015/10/11.
+ * Created by longsky on 2017/4/25.
  */
-public class ReceivedAppAdapter extends RecyclerView.Adapter<ReceivedAppAdapter.MyHolder> {
-    private Context mContext;
-    private ArrayList<IInfo> mAppInfoList;
 
-    public ReceivedAppAdapter(Context context, ArrayList<IInfo> appInfoList)
-    {
+public class ReceivedMusicAdapter extends RecyclerView.Adapter<ReceivedMusicAdapter.MyHolder> {
+    private Context mContext;
+    private ArrayList<IInfo> mMusics;
+
+    public ReceivedMusicAdapter(Context context, ArrayList<IInfo> appInfoList) {
         mContext = context;
-        mAppInfoList = appInfoList;
+        mMusics = appInfoList;
     }
 
     @Override
-    public MyHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
-        MyHolder myHolder = new MyHolder(LayoutInflater.from(mContext).inflate(
-            R.layout.view_received_app_item, null));
+    public ReceivedMusicAdapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ReceivedMusicAdapter.MyHolder myHolder = new ReceivedMusicAdapter.MyHolder(LayoutInflater.from(mContext).inflate(
+                R.layout.view_received_app_item, null));
 
         return myHolder;
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, final int position)
-    {
-        final AppInfo app = (AppInfo) mAppInfoList.get(position);
+    public void onBindViewHolder(ReceivedMusicAdapter.MyHolder holder, final int position) {
+        final AppInfo app = (AppInfo) mMusics.get(position);
 
         if (app == null)
             return;
@@ -61,25 +57,37 @@ public class ReceivedAppAdapter extends RecyclerView.Adapter<ReceivedAppAdapter.
         holder.mName.setText(app.getFileName());
         holder.mSize.setText(app.getFileSize());
 
-        holder.mLayout.setOnClickListener(new View.OnClickListener()
-        {
+        holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                // install app
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setDataAndType(Uri.fromFile(new File(app.getFilePath())),
-                    "application/vnd.android.package-archive");
-                mContext.startActivity(intent);
+            public void onClick(View v) {
+                playVideo(mContext,app.getFilePath());
             }
         });
     }
 
+    private static void playVideo(Context context,String videoPath){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        String strend="";
+        if(videoPath.toLowerCase().endsWith(".mp4")){
+            strend="mp4";
+        }
+        else if(videoPath.toLowerCase().endsWith(".3gp")){
+            strend="3gp";
+        }
+        else if(videoPath.toLowerCase().endsWith(".mov")){
+            strend="mov";
+        }
+        else if(videoPath.toLowerCase().endsWith(".wmv")){
+            strend="wmv";
+        }
+
+        intent.setDataAndType(Uri.parse(videoPath), "video/"+strend);
+        context.startActivity(intent);
+    }
+
     @Override
-    public int getItemCount()
-    {
-        return mAppInfoList.size();
+    public int getItemCount() {
+        return mMusics.size();
     }
 
     static class MyHolder extends RecyclerView.ViewHolder
